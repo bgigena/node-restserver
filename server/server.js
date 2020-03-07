@@ -19,12 +19,13 @@ app.use(require('./routes/usuario'));
 
 
 
-mongoose.connect('mongodb://localhost:27017/cafe', (err, res) => {
+mongoose.connect(process.env.URLDB, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, },
+    (err, res) => {
 
-    if (err) throw err;
+        if (err) throw err;
 
-    console.log('Server up!!'.green);
-});
+        console.log('Server up!!'.green);
+    });
 
 app.listen(process.env.PORT, () => {
     console.log('Escuchando puerto: ', process.env.PORT);
